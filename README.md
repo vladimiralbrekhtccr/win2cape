@@ -5,6 +5,10 @@ actually get the *main pointer* to change on **macOS 26 (Tahoe)**, which Mouseca
 
 Animation, hotspots, and transparency are all preserved.
 
+<p align="center">
+  <img src="docs/pipeline.svg" alt="win2cape conversion pipeline: Windows pack to RIFF parse to DIB decode to frame strip to cape plist" width="820">
+</p>
+
 ---
 
 ## The short version
@@ -111,6 +115,10 @@ cursors store transparency in a separate **1-bpp AND mask** appended after the c
 which Pillow's `CurImagePlugin` does not apply here. Trust it and every cursor renders as a
 white box.
 
+<p align="center">
+  <img src="docs/mask-bug.svg" alt="Three panels: XOR colour data renders as an opaque white box, the 1-bpp AND mask, and the correct result with transparency applied" width="716">
+</p>
+
 `decode_icon()` parses the DIB directly: it reads `BITMAPINFOHEADER`, walks the bottom-up rows
 (`biHeight` is *double* the real height because the XOR image and AND mask are stacked), and
 sets alpha to 0 wherever a mask bit is set.
@@ -196,6 +204,18 @@ Base identifiers come from Mousecape's `cursorMap()` in `mousecloak/MCDefs.m`.
 - **Brief stock cursor at login.** The agent waits ~5s for the GUI session before applying.
 - **Rosetta dependency.** `mousecloak` is x86_64-only; if Apple drops Rosetta, this stops working.
 - **Not all packs map cleanly.** Unrecognised filenames are reported and skipped, not guessed at.
+
+---
+
+## Diagrams
+
+The diagrams in `docs/` are original and generated from source — the demo cursor in the
+transparency illustration is drawn from scratch in code, so **no third-party artwork appears
+anywhere in this repository**. Regenerate them with:
+
+```sh
+python3 docs/make-diagrams.py
+```
 
 ---
 
