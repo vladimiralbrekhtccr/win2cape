@@ -187,10 +187,18 @@ cursor that should share that art — so you don't get stock cursors leaking thr
 | Horizontal | `cursor.19`, `.28`, `.17`, `.18`, `.38`, `.27` |
 | Diagonal1 (NW-SE) | `cursor.34`, `.33`, `.35` |
 | Diagonal2 (NE-SW) | `cursor.30`, `.29`, `.37` |
+| Handwriting † | `coregraphics.Copy`, `cursor.5` |
+| Person † | `coregraphics.Alias` |
+| Pin † | `cursor.25` |
 
 Base identifiers come from Mousecape's `cursorMap()` in `mousecloak/MCDefs.m`.
 
-**Skipped:** Handwriting, Person, and Pin have no macOS equivalent.
+**†** macOS has no Handwriting / Person / Pin cursor. Rather than waste that art, these are
+repurposed onto real macOS cursors that would otherwise keep stock Apple art — Copy
+(Option-drag), Alias (Cmd+Option-drag) and Poof (drag an item off the Dock). It's a judgement
+call: comment those three lines out in `ROLE_IDS` to skip them instead.
+
+**Still unthemed** (no sensible source art): Zoom In/Out, Camera, Resize Square, Empty.
 
 > If a pack ships an `install.inf`, it's the authoritative source for which file is which role —
 > that's how the `SizeNWSE` = Diagonal1 / `SizeNESW` = Diagonal2 assignment was confirmed here.

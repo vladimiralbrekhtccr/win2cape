@@ -146,7 +146,12 @@ ROLE_IDS = {
     "move":        ["com.apple.coregraphics.Move", "com.apple.cursor.11", "com.apple.cursor.12"],
     "alternate":   ["com.apple.coregraphics.ArrowCtx", "com.apple.cursor.24"],
     "link":        ["com.apple.cursor.2", "com.apple.cursor.13"],
-    # handwriting / person / pin have no macOS counterpart and are skipped.
+    # macOS has no direct counterpart for these three Windows roles, so they are
+    # repurposed onto real macOS cursors that would otherwise keep stock Apple art.
+    # This is a judgement call - comment them out if you would rather skip them.
+    "handwriting": ["com.apple.coregraphics.Copy", "com.apple.cursor.5"],   # Option-drag
+    "person":      ["com.apple.coregraphics.Alias"],                        # Cmd+Option-drag
+    "pin":         ["com.apple.cursor.25"],                                 # Poof (drag off Dock)
 }
 
 # Common filename spellings across Windows cursor packs.
@@ -165,6 +170,9 @@ ALIASES = {
     "move": "move", "sizeall": "move",
     "alternate": "alternate", "uparrow": "alternate", "up": "alternate",
     "link": "link", "hand": "link",
+    "handwriting": "handwriting", "nwpen": "handwriting", "pen": "handwriting",
+    "person": "person",
+    "pin": "pin",
 }
 
 
